@@ -37,6 +37,7 @@ public class InMemoryPersistenceTest {
         
         assertNotNull("Loading a previously stored blueprint returned null.",ibpp.getBlueprint(bp.getAuthor(), bp.getName()));
         
+        
         assertEquals("Loading a previously stored blueprint returned a different blueprint.",ibpp.getBlueprint(bp.getAuthor(), bp.getName()), bp);
         
     }
@@ -67,6 +68,12 @@ public class InMemoryPersistenceTest {
         }
                 
         
+    }
+    
+    @Test
+    public void getBlueprintTest() {
+    	InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
+    	Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
     }
 
 
