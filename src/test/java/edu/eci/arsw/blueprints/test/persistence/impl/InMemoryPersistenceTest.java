@@ -10,6 +10,9 @@ import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -36,10 +39,11 @@ public class InMemoryPersistenceTest {
         ibpp.saveBlueprint(bp);
         
         assertNotNull("Loading a previously stored blueprint returned null.",ibpp.getBlueprint(bp.getAuthor(), bp.getName()));
+
         
         
         assertEquals("Loading a previously stored blueprint returned a different blueprint.",ibpp.getBlueprint(bp.getAuthor(), bp.getName()), bp);
-        
+
     }
 
 
@@ -71,9 +75,29 @@ public class InMemoryPersistenceTest {
     }
     
     @Test
-    public void getBlueprintTest() {
+    public void getBlueprintTest() throws BlueprintPersistenceException, BlueprintNotFoundException {
     	InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
     	Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+    	Blueprint bp=new Blueprint("Luis", "LaPintura",pts);
+    	
+    	ibpp.saveBlueprint(bp);
+    	assertEquals("The function returned a different blueprint.", ibpp.getBlueprint("Luis", "LaPintura"), bp);
+    	
+    }
+    
+    @Test
+    public void getBlueprintByAuthorTest() throws BlueprintPersistenceException {
+    	InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
+    	Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+    	HashSet<Blueprint> hbp = new HashSet<Blueprint>();
+    	Blueprint bp=new Blueprint("Luis", "LaPintura",pts);
+    	Blueprint bp1=new Blueprint("Luis", "TheWorld",pts);
+    	hbp.add(bp1);
+    	hbp.add(bp);
+    	ibpp.saveBlueprint(bp);
+    	ibpp.saveBlueprint(bp1);
+
+    	assertEquals("The function returned a different blueprints",ibpp.getBlueprintsByAuthor("Luis"), hbp);
     }
 
 
