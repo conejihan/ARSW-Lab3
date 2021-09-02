@@ -16,11 +16,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author hcadavid
  */
-
+@Component("InMemoryBlueprintPersistence")
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     private final Map<Tuple<String,String>,Blueprint> blueprints=new HashMap<>();
@@ -59,6 +61,13 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
     	}
     	
     	return Rauthor;
+	}
+
+	@Override
+	public Set<Blueprint> getAllBlueprints() {
+
+		Set<Blueprint> blueprint= (Set<Blueprint>) blueprints.get(blueprints);
+		return blueprint;
 	}
 
 

@@ -13,6 +13,7 @@ import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -99,6 +100,8 @@ public class InMemoryPersistenceTest {
 
     	assertEquals("The function returned a different blueprints",ibpp.getBlueprintsByAuthor("Luis"), hbp);
     }
+    
+ 
 
 
     

@@ -25,6 +25,12 @@ public class Blueprint {
         this.name=name;
         points=new ArrayList<>();
     }
+    
+    public Blueprint(String author, String name, List<Point> pnts) {
+    	this.author=author;
+        this.name=name;
+        points=pnts;
+    }
 
     public Blueprint() {
     }    

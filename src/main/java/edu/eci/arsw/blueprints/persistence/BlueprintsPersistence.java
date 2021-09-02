@@ -15,10 +15,11 @@ import edu.eci.arsw.blueprints.model.Blueprint;
  *
  * @author hcadavid
  */
-@Service
+//@Service
 public interface BlueprintsPersistence {
     
-    /**
+    public Set<Blueprint> getAllBlueprints();
+	/**
      * 
      * @param bp the new blueprint
      * @throws BlueprintPersistenceException if a blueprint with the same name already exists,
